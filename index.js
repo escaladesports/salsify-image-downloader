@@ -1,4 +1,5 @@
 'use strict'
+const fs = require('fs-extra')
 const request = require('request')
 const glob = require('glob-all')
 

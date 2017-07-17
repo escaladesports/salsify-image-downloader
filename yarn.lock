@@ -321,6 +321,13 @@ safe-buffer@^5.0.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
+salsify-to-json@escaladesports/salsify-to-json#v2.0.0:
+  version "2.0.0"
+  resolved "git+ssh://git@github.com/escaladesports/salsify-to-json.git#d3a059c9d2f4962de9a604fd5478f4f55af0061a"
+  dependencies:
+    fs-extra "^4.0.0"
+    request "^2.81.0"
+
 sntp@1.x.x:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/sntp/-/sntp-1.0.9.tgz#6541184cc90aeea6c6e7b35e2659082443c66198"
