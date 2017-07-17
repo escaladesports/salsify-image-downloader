@@ -5,7 +5,7 @@ Fetches Salsify images and compresses/resizes them for web.
 ## Installation
 
 ```bash
-yarn add escaladesports/salsify-image-downloader
+yarn add escaladesports/salsify-image-downloader#v1.0.0
 ```
 
 ## Usage
