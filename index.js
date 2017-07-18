@@ -123,6 +123,7 @@ function downloadImage(id, url, obj){
 		let filename = `${obj.out}/${id}${path.extname(url)}`
 		obj.log(`Reading image "${url}"...`)
 		request(url, (err, res, body) => {
+			if(err) return reject(err)
 			//const buffer = new Buffer(body).toString('base64')
 			fs.ensureFile(filename, () => {
 				sharp(body)
