@@ -1,6 +1,6 @@
 {
   "name": "salsify-image-downloader",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Kennedy Rose <krose@escaladesports.com> (https://escaladesports.com)",
   "main": "index.js",
   "license": "MIT",
