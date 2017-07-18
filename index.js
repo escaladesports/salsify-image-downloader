@@ -124,16 +124,18 @@ function downloadImage(id, url, obj){
 		obj.log(`Reading image "${url}"...`)
 		request(url, (err, res, body) => {
 			//const buffer = new Buffer(body).toString('base64')
-			sharp(body)
-				.resize(obj.width)
-				.toFile(filename, err => {
-					if(err) reject(err)
-					else{
-						obj.progress++
-						obj.log(`Saved image "${url}". (${obj.progress}/${obj.total})`)
-						resolve()
-					}
-				})
+			fs.ensureFile(filename, () => {
+				sharp(body)
+					.resize(obj.width)
+					.toFile(filename, err => {
+						if(err) reject(err)
+						else{
+							obj.progress++
+							obj.log(`Saved image "${url}". (${obj.progress}/${obj.total})`)
+							resolve()
+						}
+					})
+			})
 		})
 	})
 }
