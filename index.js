@@ -1,9 +1,9 @@
 'use strict'
 const path = require('path')
 const fs = require('fs-extra')
-const request = require('request')
+const request = require('request').defaults({ encoding: null })
 const glob = require('glob-all')
-const jimp = require('jimp')
+const sharp = require('sharp')
 
 
 /*
@@ -122,17 +122,19 @@ function downloadImage(id, url, obj){
 	return new Promise((resolve, reject) => {
 		let filename = `${obj.out}/${id}${path.extname(url)}`
 		obj.log(`Reading image "${url}"...`)
-		jimp.read(url, (err, img) => {
-				obj.log(`Processing image "${filename}"...`)
-				img.resize(obj.width, jimp.AUTO)
-					.write(filename, () => {
-						obj.log(`Saved image "${url}".`)
+		request(url, (err, res, body) => {
+			//const buffer = new Buffer(body).toString('base64')
+			sharp(body)
+				.resize(obj.width)
+				.toFile(filename, err => {
+					if(err) reject(err)
+					else{
 						obj.progress++
-						obj.log(`${obj.progress}/${obj.total}`)
+						obj.log(`Saved image "${url}". (${obj.progress}/${obj.total})`)
 						resolve()
-					})
-			})
-			.catch(reject)
+					}
+				})
+		})
 	})
 }
 

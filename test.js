@@ -4,7 +4,7 @@ const salsify = require('salsify-to-json')
 const salsifyImgs = require('./index')
 
 salsify({
-		ids: [ 'T8681W' ],
+		ids: [ 'B3010W' ],
 		out: './json'
 	})
 	.then(() => salsifyImgs({
