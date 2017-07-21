@@ -161,7 +161,7 @@ module.exports = obj => {
 		obj = Object.assign({
 			log: console.log,
 			fields: [ 'Web Images' ],
-			width: 600,
+			width: 900,
 			newImgs: {},
 			removeImgs: {}
 		}, obj)
