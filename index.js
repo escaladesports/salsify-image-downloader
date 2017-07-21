@@ -122,21 +122,21 @@ function downloadImage(id, url, obj){
 	return new Promise((resolve, reject) => {
 		let filename = `${obj.out}/${id}${path.extname(url)}`
 		obj.log(`Reading image "${url}"...`)
+
+		url = path.parse(url)
+		url.dir = `${url.dir}/w_${obj.width}`
+		url = path.format(url)
+
 		request(url, (err, res, body) => {
 			if(err) return reject(err)
 			//const buffer = new Buffer(body).toString('base64')
-			fs.ensureFile(filename, () => {
-				sharp(body)
-					.resize(obj.width)
-					.toFile(filename, err => {
-						if(err) reject(err)
-						else{
-							obj.progress++
-							obj.log(`Saved image "${url}". (${obj.progress}/${obj.total})`)
-							resolve()
-						}
-					})
-			})
+			fs.outputFile(filename, body)
+				.then(() => {
+					obj.progress++
+					obj.log(`Saved image "${url}". (${obj.progress}/${obj.total})`)
+					resolve()
+				})
+				.catch(reject)
 		})
 	})
 }
@@ -161,7 +161,7 @@ module.exports = obj => {
 		obj = Object.assign({
 			log: console.log,
 			fields: [ 'Web Images' ],
-			width: 900,
+			width: 600,
 			newImgs: {},
 			removeImgs: {}
 		}, obj)
