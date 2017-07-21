@@ -124,7 +124,7 @@ function downloadImage(id, url, obj){
 		obj.log(`Reading image "${url}"...`)
 
 		url = path.parse(url)
-		url.dir = `${url.dir}/w_${obj.width}`
+		url.dir = `${url.dir}/w_${obj.width}/dn_72`
 		url = path.format(url)
 
 		request(url, (err, res, body) => {
