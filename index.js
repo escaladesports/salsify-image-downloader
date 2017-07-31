@@ -82,6 +82,8 @@ function addSalsifyImages(srcFile, obj){
 // Turns Salsify assets array into an object
 function assetsToObject(arr){
 	const obj = {}
+	if(!arr) return obj
+	if(typeof arr === 'string') arr = [ arr ]
 	for(let i = arr.length; i--;){
 		const asset = arr[i]
 		obj[asset['salsify:id']] = {
